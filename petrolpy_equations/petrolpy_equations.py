@@ -9,16 +9,11 @@ def convert_secant_di_to_nominal(secant_di: float, b_factor: float) -> float:
         
     """
 
-    if b_factor == 0:
-        # Exponential
-
-        nominal_di = secant_di
-
-    else:
-
-        nominal_di = (((1 - secant_di) ** (-b_factor)) - 1) / b_factor
-
-    return nominal_di
+    return (
+        secant_di
+        if b_factor == 0
+        else (((1 - secant_di) ** (-b_factor)) - 1) / b_factor
+    )
 
 
 def arps_decline_rate_q(
@@ -79,9 +74,7 @@ def ann_to_monthly_disc_rate(annual_disc_rate: float) -> float:
         Example: convert 10% annual, ann_to_monthly_disc_rate(0.10)
     """
 
-    monthly_disc_rate = ((1 + annual_disc_rate) ** (1 / 12)) - 1
-
-    return monthly_disc_rate
+    return ((1 + annual_disc_rate) ** (1 / 12)) - 1
 
 
 def irr(values: list, monthly=False) -> float:
@@ -105,16 +98,11 @@ def irr(values: list, monthly=False) -> float:
     while npv_rate > 0 and irr < 101:
 
         irr += 1
-        npv_values = []
-
-        for time, value in enumerate(values):
-            npv_value = (value) / ((1 + (irr / 100)) ** time)
-            npv_values.append(npv_value)
-
+        npv_values = [
+            (value) / ((1 + (irr / 100)) ** time)
+            for time, value in enumerate(values)
+        ]
         npv_rate = sum(npv_values)
         npv_rates.append(npv_rate)
 
-    if monthly:
-        return ((1 + (irr / 100)) ** 12) - 1
-    else:
-        return irr / 100
+    return ((1 + (irr / 100)) ** 12) - 1 if monthly else irr / 100

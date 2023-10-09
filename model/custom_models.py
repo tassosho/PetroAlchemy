@@ -14,8 +14,7 @@ class ListModel(QtCore.QAbstractListModel):
         if role == Qt.DisplayRole:
 
             try:
-                text = self.list[index.row()]
-                return text
+                return self.list[index.row()]
             except IndexError:
                 pass
 
@@ -25,9 +24,7 @@ class ListModel(QtCore.QAbstractListModel):
     def add(self, text: str):
         """Append text to model list"""
 
-        text = str(text).strip()
-
-        if text:
+        if text := text.strip():
             if text not in self.list:
 
                 self.list.append(text)
@@ -36,7 +33,7 @@ class ListModel(QtCore.QAbstractListModel):
     def delete(self, text: str):
         """Remove text by name from model list"""
 
-        text = str(text).strip()
+        text = text.strip()
 
         if text in self.list:
 

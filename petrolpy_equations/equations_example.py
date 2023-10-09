@@ -8,8 +8,8 @@ df.columns = map(str.lower, df.columns)
 
 delta_time_yrs = [((date - df["date"][0]).days / 365) for date in df["date"]]
 
-di_secant = float(0.6)
-b_factor = float(1.1)
+di_secant = 0.6
+b_factor = 1.1
 qi = float(2700)
 
 nominal_di = petrolpy.convert_secant_di_to_nominal(di_secant, b_factor)
