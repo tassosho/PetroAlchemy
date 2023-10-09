@@ -68,15 +68,12 @@ def import_data(self):
                 msg.exec_()
                 return
 
+    msg = QMessageBox()
+    msg.setIcon(QMessageBox.Information)
     if wells_total > 1:
-        msg = QMessageBox()
-        msg.setIcon(QMessageBox.Information)
         msg.setText(f"{wells_total} wells have been added 🚀")
-        msg.setWindowTitle("Import Finished")
-        msg.exec_()
     else:
-        msg = QMessageBox()
-        msg.setIcon(QMessageBox.Information)
         msg.setText(f"{well_name} has been added 🚀")
-        msg.setWindowTitle("Import Finished")
-        msg.exec_()
+
+    msg.setWindowTitle("Import Finished")
+    msg.exec_()

@@ -245,7 +245,7 @@ class MainWindow(QMainWindow):
 
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Information)
-            msg.setText(f"Use the two checkboxes to use the decline curves 👀")
+            msg.setText("Use the two checkboxes to use the decline curves 👀")
             msg.setWindowTitle("No Decline Curves Used")
             msg.exec_()
 
@@ -282,7 +282,7 @@ class MainWindow(QMainWindow):
 
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Information)
-            msg.setText(f"Use the two checkboxes to use the decline curves 👀")
+            msg.setText("Use the two checkboxes to use the decline curves 👀")
             msg.setWindowTitle("No Decline Curves Used")
             msg.exec_()
 

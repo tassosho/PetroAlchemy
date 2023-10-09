@@ -21,22 +21,8 @@ def create_cashflow(self):
 
     shape = df_oil.shape
 
-    if df_oil is None:
-
-        oil_curve = np.zeros(shape)
-
-    else:
-
-        oil_curve = df_oil[oil_decline_curve]
-
-    if df_gas is None:
-
-        gas_curve = np.zeros(shape)
-
-    else:
-
-        gas_curve = df_gas[gas_decline_curve]
-
+    oil_curve = np.zeros(shape) if df_oil is None else df_oil[oil_decline_curve]
+    gas_curve = np.zeros(shape) if df_gas is None else df_gas[gas_decline_curve]
     months = np.arange(1, 601)
 
     cashflow_start_date = self.ui.dateEditCashflowStart.date().toPython()

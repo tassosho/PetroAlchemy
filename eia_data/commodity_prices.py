@@ -11,11 +11,9 @@ def get_api_key(file_path=r"settings/user_settings.json"):
     """ Gets EIA data API key from user setting json file.
     """
 
-    json_file = open(file_path, "r")
-    json_data = json.loads(json_file.read())
-    json_file.close()
-    api_key = json_data.get("eia_key")
-    return api_key
+    with open(file_path, "r") as json_file:
+        json_data = json.loads(json_file.read())
+    return json_data.get("eia_key")
 
 
 def spot_prices(api_key=None):

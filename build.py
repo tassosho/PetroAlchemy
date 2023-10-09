@@ -2,10 +2,7 @@ import os
 import sys
 from cx_Freeze import setup, Executable
 
-base = None
-if sys.platform == "win32":
-    base = "Win32GUI"
-
+base = "Win32GUI" if sys.platform == "win32" else None
 icon = r"icon\\app_icon.ico"
 
 VERSION = "0.3.0-beta"
